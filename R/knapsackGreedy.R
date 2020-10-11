@@ -1,7 +1,10 @@
+#'knapsack by Greedy heuristic
 #'
-#'
-#'
-#'@export
+#' @param x is a dataframe with two variables v and w
+#' @param W is the knapsack size
+#' @author Zahra Jalilpour, Arslan Shirazi
+#' @return 
+#' @export
 
 greedy_knapsack <- function(x, W){
   
