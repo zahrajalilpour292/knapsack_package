@@ -1,11 +1,16 @@
 ---
 title: "lab_report_knapsack"
+author: "Zahra Jalilpour and Arslan Shirazi"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{lab_report_knapsack}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+In this package we create three different functions ,brute force, dynamic programming and greedy heuristic. We examine our functions by random values of weight and values. v is between 0 to 10000 and w is the range of 1 to 4000
+
+
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -16,4 +21,19 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(knapsack)
+set.seed(42)
+n <- 2000
+knapsack_objects <-
+data.frame(
+w=sample(1:4000, size = n, replace = TRUE),
+v=runif(n = n, 0, 10000)
+)
+
 ```
+## Brute force algorithm
+The first function is related to Brute force algorithm. In this algorithm the complexity is O(2^n), for n items.  
+knapsack_brute_force(x = knapsack_objects[1:8,], W = 3500)
+The highest value for the first eighth items without exceeding the max weight of 3500 is about 17277value-units and items 4,5,7 are used.
+By system.time({
++     knapsack_brute_force(x = knapsack_objects[1:8,], W = 3500)
+we calculate the time that algorithm take to solve the problem.
