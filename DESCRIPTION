@@ -1,10 +1,16 @@
 Package: knapsack
 Type: Package
-Title: What the package does (short line)
+Title: knapsack_package
 Version: 1.0
 Date: 2020-10-11
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Zahra Jalilpour,
+        Arslan Shirazi
+Maintainer: Zahra<zahja096@student.liu.se>,
+            Arslan<syeha193@student.liu.se>
+Description: This algorithm takes a data.frame with two variables and returns the maximum knapsack value
+License: file LICENSE
 RoxygenNote: 7.1.1
+Encoding: UTF-8
+VignetteBuilder: knitr
+LazyData: true
+Depends: R (>= 3.5.0)
