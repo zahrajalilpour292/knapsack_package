@@ -1,6 +1,12 @@
+#'Knapsack
+#'@title Kanpsack Dynamic Programming
 #'
+#'@param x is a data frame reprents the totla items, containing the two colums w and v, w represents thw weight of item and v represnets the value
+#'@param W is an integer that represnts the maximun weight of the container
 #'
+#'@return  It return the list, which the total value of item in knapsack and their position in the data frame
 #'
+#'@references \url{https://en.wikipedia.org/wiki/Knapsack problem#0.2F1 knapsack problem}
 #'@export
 
 greedy_knapsack <- function(x, W){

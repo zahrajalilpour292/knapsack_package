@@ -1,11 +1,15 @@
-#' Brute Force Knapsack Problem
+#'Knapsack
+#'@title Kanpsack Dynamic Programming
 #'
-#' @param x is a dataframe with two variables v and w
-#' @param W is the knapsack size
-#' @author Zahra Jalilpour, Arslan Shirazi
-#' @return a list of max_value and chosen items
-#' @references https://en.wikipedia.org/wiki/Knapsack
-#' @export
+#'@param x is a data frame reprents the totla items, containing the two colums w and v, w represents thw weight of item and v represnets the value
+#'@param W is an integer that represnts the maximun weight of the container
+#'
+#'@return  It return the list, which the total value of item in knapsack and their position in the data frame
+#'
+#'@references \url{https://en.wikipedia.org/wiki/Knapsack problem#0.2F1 knapsack problem}
+#'@export
+#'
+
 knapsack_brute_force <- function(x,W){
   stopifnot(is.data.frame(x) & x> 0 ,is.numeric(W))
   w <- x$w
