@@ -17,10 +17,6 @@ a list of max_value and chosen items
 \description{
 Brute Force Knapsack Problem
 }
-\examples{
-brute_force_knapsack(x = knapsack_objects[1:8,], W = 3500)
-brute_force_knapsack(x = knapsack_objects[1:12,], W = 3500)
-}
 \references{
 https://en.wikipedia.org/wiki/Knapsack
 }
