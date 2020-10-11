@@ -3,9 +3,6 @@
 #' @param x is a dataframe with two variables v and w
 #' @param W is the knapsack size
 #' @author Zahra Jalilpour, Arslan Shirazi
-#' @examples 
-#'brute_force_knapsack(x = knapsack_objects[1:8,], W = 3500)
-#'brute_force_knapsack(x = knapsack_objects[1:12,], W = 3500)
 #' @return a list of max_value and chosen items
 #' @references https://en.wikipedia.org/wiki/Knapsack
 #' @export
