@@ -54,15 +54,15 @@ knapack_dynamic  <- function(x, W) {
   row <- nrow(sparse_matrix)
   col <- ncol(sparse_matrix)
   elements <- c()
-  values <- 0
-  browser()
+  values <- max(sparse_matrix)
+  #browser()
   while (row > 1 & col > 1) {
     
       if(sparse_matrix[row,col] == sparse_matrix[row-1,col]){
         row <- row - 1
       }else{
-        elements <- append(elements,weights_vector[row])
-        values <- values + values_vector[row]
+        elements <- append(elements,row)
+        #values <- values + values_vector[row]
         row <- row -1
         col <- col - weights_vector[row]
       }
