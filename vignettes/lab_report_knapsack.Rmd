@@ -31,9 +31,16 @@ v=runif(n = n, 0, 10000)
 
 ```
 ## Brute force algorithm
+```{r, include = TRUE}
 The first function is related to Brute force algorithm. In this algorithm the complexity is O(2^n), for n items.  
 knapsack_brute_force(x = knapsack_objects[1:8,], W = 3500)
 The highest value for the first eighth items without exceeding the max weight of 3500 is about 17277value-units and items 4,5,7 are used.
 By system.time({
 +     knapsack_brute_force(x = knapsack_objects[1:8,], W = 3500)
 we calculate the time that algorithm take to solve the problem.
+```
+## Greedy heuristic
+```{r, include = TRUE}
+A greedy algorithm is any algorithm that follows the problem-solving heuristic of making the locally optimal choice at each stage[1]. In many problems, a greedy strategy does not usually produce an optimal solution, but nonetheless a greedy heuristic may yield locally optimal solutions that approximate a globally optimal solution in a reasonable amount of time.
+greedy_knapsack(x = knapsack_objects[1:800,], W = 3500)
+```
