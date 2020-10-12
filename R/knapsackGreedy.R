@@ -1,3 +1,4 @@
+
 #'Knapsack
 #'@title Kanpsack Dynamic Programming
 #'
@@ -8,6 +9,7 @@
 #'
 #'@references \url{https://en.wikipedia.org/wiki/Knapsack problem#0.2F1 knapsack problem}
 #'@export
+
 
 greedy_knapsack <- function(x, W){
   
