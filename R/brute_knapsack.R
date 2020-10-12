@@ -1,5 +1,5 @@
 #'Knapsack
-#'@title Kanpsack Dynamic Programming
+#'@title Kanpsack Bruteforce
 #'
 #'@param x is a data frame reprents the totla items, containing the two colums w and v, w represents thw weight of item and v represnets the value
 #'@param W is an integer that represnts the maximun weight of the container
@@ -10,8 +10,8 @@
 #'@export
 #'
 
-knapsack_brute_force <- function(x,W){
-  stopifnot(is.data.frame(x) & x> 0 ,is.numeric(W))
+brute_force_knapsack <- function(x,W){
+  stopifnot(is.data.frame(x) & x> 0 ,is.numeric(W),W >0)
   w <- x$w
   n <- length(w)
   v <- x$v
@@ -27,7 +27,7 @@ knapsack_brute_force <- function(x,W){
       max_value=total_value
     }
   }
-  result=list("value"=(max_value),"items"=chosen_item) 
+  result=list("value"=(max_value),"elements"=chosen_item) 
   return (result)
   
 }

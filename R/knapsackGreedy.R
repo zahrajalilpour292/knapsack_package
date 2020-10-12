@@ -12,7 +12,7 @@
 greedy_knapsack <- function(x, W){
   
   # check the input
-  stopifnot(is.data.frame(x), is.numeric(W) , length(W) == 1)
+  stopifnot(is.data.frame(x), is.numeric(W) , length(W) == 1, W > 0)
   stopifnot(length(colnames(knapsack_objects)) == 2,
             colnames(x)[1] == "w",
             colnames(x)[2] == "v")
@@ -20,24 +20,24 @@ greedy_knapsack <- function(x, W){
   #creating a new column in dataframe
   col_name <- "density"
   x[col_name] <- apply(x, 1, function(x) { round(x["v"] / x["w"],3)})
-  
+  #x[col_name] <- x["v"] / x["w"]
   # sort the dataframe according to the key value
   # sorts the items in decreasing order of value per unit of weight, 
   #  v{1} / w{1} .... >= ...... v{n} / w{n}
   
   x <- x[order(x[col_name], decreasing = TRUE),]
-  
+  browser()
   knapsack_weight <- 0
   knapsack_value <- 0
   knapsack_items <- vector()
 
   for (item in 1:nrow(x)) {
     
-    item_desity <- as.numeric(x[item ,][col_name])
+    #item_desity <- as.numeric(x[item ,][col_name])
     item_weight <- as.numeric(x[item ,]["w"])
     item_value <-  as.numeric(x[item ,]["v"])
     
-    if(knapsack_weight < W){
+    if(knapsack_weight + item_weight < W){
       
       knapsack_weight = knapsack_weight + item_weight
       knapsack_value = knapsack_value + item_value
@@ -49,7 +49,7 @@ greedy_knapsack <- function(x, W){
     }
   }
   
-  return(list("value" = knapsack_value,
+  return(list("value" = round(knapsack_value),
               "elements" = knapsack_items))
 }
 
