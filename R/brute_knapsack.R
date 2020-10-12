@@ -1,8 +1,8 @@
 #'Knapsack
 #'@title Kanpsack Bruteforce
 #'
-#'@param x is a data frame reprents the totla items, containing the two colums w and v, w represents thw weight of item and v represnets the value
-#'@param W is an integer that represnts the maximun weight of the container
+#'@param x is a data frame represents the total items, containing the two columns w and v, w represents thw weight of item and v represnets the value
+#'@param W is an integer that represents the maximum weight of the container
 #'
 #'@return  It return the list, which the total value of item in knapsack and their position in the data frame
 #'
