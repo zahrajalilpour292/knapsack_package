@@ -28,7 +28,7 @@ greedy_knapsack <- function(x, W){
   #  v{1} / w{1} .... >= ...... v{n} / w{n}
   
   x <- x[order(x[col_name], decreasing = TRUE),]
-  browser()
+  #browser()
   knapsack_weight <- 0
   knapsack_value <- 0
   knapsack_items <- vector()
@@ -57,10 +57,10 @@ greedy_knapsack <- function(x, W){
 
 
 # test data
-set.seed(42)
-n <- 2000
-knapsack_objects <-
-  data.frame(
-    w=sample(1:4000, size = n, replace = TRUE),
-    v=runif(n = n, 0, 10000)
-)
+# set.seed(42)
+# n <- 2000
+# knapsack_objects <-
+#   data.frame(
+#     w=sample(1:4000, size = n, replace = TRUE),
+#     v=runif(n = n, 0, 10000)
+# )
