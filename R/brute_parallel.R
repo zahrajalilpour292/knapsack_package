@@ -1,4 +1,4 @@
-#''Parallelize brute force search
+#'@import parallel
 #'@title Kanpsack Bruteforce
 #'
 #'@param x is a data frame represents the total items, containing the two columns w and v, w represents thw weight of item and v represnets the value
