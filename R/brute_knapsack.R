@@ -11,9 +11,35 @@
 #'
 
 brute_force_knapsack <- function(x, W, parallel = FALSE){
-  stopifnot(is.data.frame(x) & x> 0 ,is.numeric(W),W >0)
+  
+  stopifnot(is.data.frame(x) & x> 0,
+            is.numeric(W),
+            W >0
+            )
   
   if(parallel){
+    
+    # add parallel code inside this block
+    if(Sys.info()["sysname"][[1]] %in% c("Linux", "Darwin", "Windows")){
+     
+      # detect the cores
+      no_of_cores <- parallel::detectCores()
+      my_cluster <- parallel::makeCluster(no_of_cores)
+      # import the data fram x and weight W in cluster
+      parallel::clusterExport(cl = my_cluster,
+                              c("x", "W"),
+                              envir = environment()
+      )
+      
+      # brute force here
+      
+      
+      parallel::stopCluster(my_cluster)
+    
+      }else{
+      print("Brute Force Knapsack does not suported this system for the parrlel version of code ):-")
+    }
+    
     
   }else{
     #browser()

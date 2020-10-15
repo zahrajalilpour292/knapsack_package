@@ -7,7 +7,7 @@ Author: Zahra Jalilpour,
         Arslan Shirazi
 Maintainer: Zahra<zahja096@student.liu.se>,
             Arslan<syeha193@student.liu.se>
-Description: This algorithm takes a data.frame with two variables and returns the maximum knapsack value
+Description: This algorithm takes a data frame with two variables and returns the maximum knapsack value
 License: GPL-2
 RoxygenNote: 7.1.0
 Encoding: UTF-8
@@ -17,4 +17,5 @@ Depends: R (>= 3.5.0)
 Suggests: 
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    parallel
