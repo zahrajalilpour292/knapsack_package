@@ -9,9 +9,9 @@
 #'@references \url{https://en.wikipedia.org/wiki/Knapsack problem#0.2F1 knapsack problem}
 #'@export
 #'
-install.packages("doParallel")
-library(parallel)
-library(doParallel)
+#install.packages("doParallel")
+#library(parallel)
+#library(doParallel)
 parallel_knapsack_brute_force <- function(x,W,parallel=FALSE){
   stopifnot(is.data.frame(x) & x> 0 ,is.numeric(W))
   w <- x$w
@@ -19,7 +19,7 @@ parallel_knapsack_brute_force <- function(x,W,parallel=FALSE){
   v <- x$v
   no_cores <- detectCores(logical = TRUE) -1
   # making cluster by socket version
-  cl <- makeCluster(no_cores, type='PSOCK')
+  c1 <- makeCluster(no_cores, type='PSOCK')
   mat <- parLapply(c1, 1:2^n, function(x){as.integer(intToBits(x)[1:n])})
   stopCluster(c1)
   # make all combination of the weights

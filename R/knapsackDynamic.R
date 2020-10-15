@@ -50,11 +50,13 @@ knapack_dynamic  <- function(x, W) {
     row_index <- row_index + 1
   }
   
-  # bracking tracking from n*m
+  # bracking tracking from sparse_matrix[n,m]
+  
   row <- nrow(sparse_matrix)
   col <- ncol(sparse_matrix)
-  elements <- c()
+  elements <- vector("numeric")
   values <- max(sparse_matrix)
+  
   #browser()
   while (row > 1 & col > 1) {
     

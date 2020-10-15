@@ -10,24 +10,41 @@
 #'@export
 #'
 
-brute_force_knapsack <- function(x,W){
+brute_force_knapsack <- function(x, W, parallel = FALSE){
   stopifnot(is.data.frame(x) & x> 0 ,is.numeric(W),W >0)
-  w <- x$w
-  n <- length(w)
-  v <- x$v
-  max_value <- 0
-  chosen_item <- c()
-  len_calc <- 1:((2^n)-1)
-  for(i in len_calc){
-    item=which(intToBits(i)==01)
-    total_weights=sum(w[item])
-    total_value=sum(v[item])
-    if(total_value > max_value && total_weights <= W){
-      chosen_item=item
-      max_value=total_value
-    }
-  }
-  result=list("value"=(max_value),"elements"=chosen_item) 
-  return (result)
   
+  if(parallel){
+    
+  }else{
+    #browser()
+    # separating the weights, values
+    items_weight <- x$w
+    items_value <- x$v
+    total_items <- length(items_weight)
+    
+    # items included in knapsack, their total value
+    max_value <- 0
+    # index of the items in the knapsack
+    chosen_item <- c()
+    # all possible combinations of the total items
+    calc_combinations <- 1:((2^total_items)-1)
+    
+    for(i in calc_combinations){
+      
+      item <- which(intToBits(i) == 01)
+      
+      total_weights <- sum(items_weight[item])
+      total_value <- sum(items_value[item])
+      
+      if(total_value > max_value && total_weights <= W){
+        
+        chosen_item <- item
+        max_value <- total_value
+      
+        }
+    }
+    result=list("value"=round(max_value),"elements"=chosen_item) 
+    return (result)
+  }
+ 
 }
