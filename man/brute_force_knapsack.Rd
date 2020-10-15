@@ -10,6 +10,8 @@ brute_force_knapsack(x, W, parallel = FALSE)
 \item{x}{is a data frame represents the total items, containing the two columns w and v, w represents thw weight of item and v represnets the value}
 
 \item{W}{is an integer that represents the maximum weight of the container}
+
+\item{parallel}{It's for the code to run on multiple cores or single}
 }
 \value{
 It return the list, which the total value of item in knapsack and their position in the data frame

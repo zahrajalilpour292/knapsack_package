@@ -3,7 +3,7 @@
 #'
 #'@param x is a data frame represents the total items, containing the two columns w and v, w represents thw weight of item and v represnets the value
 #'@param W is an integer that represents the maximum weight of the container
-#'
+#'@param parallel It's for the code to run on multiple cores or single
 #'@return  It return the list, which the total value of item in knapsack and their position in the data frame
 #'
 #'@references \url{https://en.wikipedia.org/wiki/Knapsack problem#0.2F1 knapsack problem}

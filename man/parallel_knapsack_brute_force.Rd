@@ -17,7 +17,7 @@ parallel_knapsack_brute_force(x, W, parallel = FALSE)
 It return the list, which the total value of item in knapsack and their position in the data frame
 }
 \description{
-'Parallelize brute force search
+Kanpsack Bruteforce
 }
 \references{
 \url{https://en.wikipedia.org/wiki/Knapsack problem#0.2F1 knapsack problem}
