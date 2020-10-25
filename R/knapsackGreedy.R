@@ -1,10 +1,10 @@
-
-#'Knapsack
-#'@title Kanpsack Dynamic Programming
+#'greedy for Knapsack
+#'@title   greedy for Knapsack
 #'
-#'@param x is a data frame reprents the totla items, containing the two colums w and v, w represents thw weight of item and v represnets the value
-#'@param W is an integer that represnts the maximun weight of the container
+#'@param x is a data frame repents the total items, containing the two columns w and v, w represents the weight of item and v represents the value
+#'@param W is an integer that represents the maximum weight of the container
 #'
+#'@description greedy method for knap sack problem
 #'@return  It return the list, which the total value of item in knapsack and their position in the data frame
 #'
 #'@references \url{https://en.wikipedia.org/wiki/Knapsack problem#0.2F1 knapsack problem}

@@ -1,4 +1,4 @@
-#'Knapsack
+700#'Knapsack
 #'@title Kanpsack Dynamic Programming
 #'
 #'@description Fills the bag with approximatilly best weights and vlues
