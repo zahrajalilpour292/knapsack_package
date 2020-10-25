@@ -56,7 +56,7 @@ brute_force_knapsack <- function(x, W, parallel = FALSE){
       #items <- c(c(1:n) * item_id)
       #items <- items[items > 0]
       
-      result <- list(value = round(max_value), elements = items))
+      #result <- list(value = round(max_value), elements = items)
       
       }else{
       print("Brute Force Knapsack does not suported this system for the parrlel version of code ):-")
