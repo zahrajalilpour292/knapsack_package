@@ -10,7 +10,6 @@
 #'@references \url{https://en.wikipedia.org/wiki/Knapsack problem#0.2F1 knapsack problem}
 #'@export
 
-
 greedy_knapsack <- function(x, W){
   
   # check the input
@@ -54,3 +53,5 @@ greedy_knapsack <- function(x, W){
   return(list("value" = round(knapsack_value),
               "elements" = knapsack_items))
 }
+
+
