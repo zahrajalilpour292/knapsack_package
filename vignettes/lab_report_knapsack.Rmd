@@ -9,6 +9,8 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -20,7 +22,7 @@ library(knapsack)
 ```
 
 
-```{r}
+```{r analysis, include=TRUE}
 set.seed(42)
 n <- 2000
 knapsack_objects <- data.frame(
@@ -48,7 +50,7 @@ is using brute-force search, i.e. going through all possible alternatives and re
 found. This approach is of complexity $O(2^n)$ since all possible combinations $2^n$ needs to be evaluated.
 for time running, by microbenchmark library we will see the mean time as below
 
-```{r}
+```{r runCode, echo=TRUE}
 set.seed(42)
 n <- 16
 knapsack_objects <- data.frame(w=sample(1:4000, size = n, replace = TRUE),v=runif(n = n, 0, 10000))
