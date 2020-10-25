@@ -1,7 +1,7 @@
 #'Knapsack
-#'@title Kanpsack Dynamic Programming
+#'@title Kanpsack Dynamic
 #'
-#'@description Fills the bag with approximatilly best weights and vlues
+#'@description Fills the bag with  best weights and values
 #'
 #'@param x is a data frame reprents the totla items, containing the two colums w and v, w represents thw weight of item and v represnets the value
 #'@param W is an integer that represnts the maximun weight of the container
@@ -11,7 +11,7 @@
 #'@references \url{https://en.wikipedia.org/wiki/Knapsack problem#0.2F1 knapsack problem}
 #'@export
 
-knapack_dynamic  <- function(x, W) {
+knapsack_dynamic  <- function(x, W) {
   
   # check the input
   stopifnot(is.data.frame(x), is.numeric(W) , length(W) == 1 , W > 0)
@@ -49,29 +49,30 @@ knapack_dynamic  <- function(x, W) {
     col_index <- 1
     row_index <- row_index + 1
   }
+  #print(dim(sparse_matrix))
+  #print(sparse_matrix)
   
-  # bracking tracking from sparse_matrix[n,m]
-  
+  #bracking tracking from sparse_matrix[n,m]
   row <- nrow(sparse_matrix)
   col <- ncol(sparse_matrix)
-  elements <- vector("numeric")
-  values <- max(sparse_matrix)
+  elements <- vector("logical")
+  value <- max(sparse_matrix)
   
   #browser()
+  elements <- rep(FALSE,row -1)
   while (row > 1 & col > 1) {
     
       if(sparse_matrix[row,col] == sparse_matrix[row-1,col]){
         row <- row - 1
       }else{
-        elements <- append(elements,row)
-        #values <- values + values_vector[row]
+        elements[row - 2] <- TRUE
         row <- row -1
-        col <- col - weights_vector[row]
+        col <- col - weights_vector[row -2]
       }
     
     }
   
-  result <- list("value" = values,
-              "elements" = elements)
+  result <- list("value" = round(value),
+              "elements" = which(elements))
   return(result)
 }

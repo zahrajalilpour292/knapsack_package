@@ -31,7 +31,7 @@ brute_force_knapsack <- function(x, W, parallel = FALSE){
                               envir = environment()
       )
       
-      # brute force here
+      # brute force
       
       
       parallel::stopCluster(my_cluster)
