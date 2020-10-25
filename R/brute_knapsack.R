@@ -17,6 +17,12 @@ brute_force_knapsack <- function(x, W, parallel = FALSE){
             W >0
             )
   
+  # separating the weights, values
+  items_weight <- x$w
+  items_value <- x$v
+  total_items <- length(items_weight)
+  result <- list()
+  
   if(parallel){
     
     # add parallel code inside this block
@@ -31,11 +37,27 @@ brute_force_knapsack <- function(x, W, parallel = FALSE){
                               envir = environment()
       )
       
+      comb <-  parallel::parLapply(my_cluster,
+                                   1:2^total_items,
+                                   function(x){as.integer(intToBits(x)[1:total_items])})
+      #w1 <- simplify2array(parLapply(my_cluster, comb,function(y){y%*%x$W}))
+      #v1 <- simplify2array(parLapply(c3, mat, function(y){y%*%x$v}))
+
+      
       # brute force
       
       
       parallel::stopCluster(my_cluster)
     
+      #v1[w1 > W] = 0
+      #max_value <- which.max(v1)
+      #item_id <- mat[[max_value]]
+      
+      #items <- c(c(1:n) * item_id)
+      #items <- items[items > 0]
+      
+      result <- list(value = round(max_value), elements = items))
+      
       }else{
       print("Brute Force Knapsack does not suported this system for the parrlel version of code ):-")
     }
@@ -43,10 +65,6 @@ brute_force_knapsack <- function(x, W, parallel = FALSE){
     
   }else{
     #browser()
-    # separating the weights, values
-    items_weight <- x$w
-    items_value <- x$v
-    total_items <- length(items_weight)
     
     # items included in knapsack, their total value
     max_value <- 0
@@ -69,9 +87,10 @@ brute_force_knapsack <- function(x, W, parallel = FALSE){
       
         }
     }
-    result=list("value"=round(max_value),"elements"=chosen_item) 
-    return (result)
+    result <- list("value"=round(max_value),"elements"=chosen_item) 
   }
+  #returning the selected elements in knapsack and their toatl value
+  return (result)
  
 }
 

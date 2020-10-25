@@ -10,7 +10,7 @@
 #'@export
 #'
 #install.packages("doParallel")
-#library(parallel)
+library(parallel)
 #library(doParallel)
 parallel_knapsack_brute_force <- function(x,W,parallel=FALSE){
   stopifnot(is.data.frame(x) & x> 0 ,is.numeric(W))
