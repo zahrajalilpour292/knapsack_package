@@ -1,3 +1,4 @@
+<<<<<<< HEAD:R/knapsack_dynamic.R
 #'Knapsack
 #'@title Kanpsack Dynamic
 #'
