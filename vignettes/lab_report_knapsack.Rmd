@@ -81,7 +81,7 @@ Unit: milliseconds
 ## Dynamic Programming
 <p> The second algorithm we use for knapsack problem is dynamic.The running time of the dynamic programming solution is $O(Wn)$. It is a way to improve the running time. As we see the running time is decreased compared to Brute Force function. The mean of run time is 44 ms.
 ```{r}
-set.seed(42, kind = "Mersenne-Twister", normal.kind = "Inversion")
+set.seed(42)
 n <- 500
 knapsack_objects <- data.frame(w=sample(1:4000, size = n, replace = TRUE),v=runif(n = n, 0, 10000))
 knapsack_dynamic(knapsack_objects[1:12,],3500)

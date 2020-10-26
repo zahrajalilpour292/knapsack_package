@@ -18,4 +18,5 @@ Suggests:
     knitr,
     rmarkdown,
     testthat,
-    parallel
+    parallel,
+    microbenchmark
