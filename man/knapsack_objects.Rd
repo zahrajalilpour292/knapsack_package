@@ -9,6 +9,7 @@ A data.frame with 2000 rows and two variables:
 \describe{
  \item{w}{Integer,  weight}
  \item{v}{float, value of each object}
+ \item{n}{total items} 
 }
 }
 \usage{

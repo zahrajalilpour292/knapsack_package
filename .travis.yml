@@ -1,2 +1,3 @@
 language: r
 cache: packages
+r_build_args: '--compact-vignettes="gs+qpdf"'
