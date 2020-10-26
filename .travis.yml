@@ -1,4 +1,2 @@
 language: r
 cache: packages
-r_build_args: '--compact-vignettes=both'
-r_check_args: '--as-cran'
