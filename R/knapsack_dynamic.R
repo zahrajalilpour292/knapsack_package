@@ -57,22 +57,31 @@ knapsack_dynamic  <- function(x, W) {
   col <- ncol(sparse_matrix)
   elements <- vector("logical")
   value <- max(sparse_matrix)
+  each_row_max <- sparse_matrix[row,col]
   
   #browser()
-  elements <- rep(FALSE,row -1)
-  while (row > 1 & col > 1) {
-    
-      if(sparse_matrix[row,col] == sparse_matrix[row-1,col]){
+  elements <- rep(FALSE,row)
+  while (row > 1) {
+      # check if previous row has same value then decremnet the row
+      if(each_row_max %in% sparse_matrix[row - 1 ,]){
         row <- row - 1
       }else{
-        elements[row - 2] <- TRUE
-        row <- row -1
-        col <- col - weights_vector[row -2]
+        elements[row] <- TRUE
+        each_row_max <- each_row_max - values_vector[row]
+        row <- row - 1
       }
+    
+      # if(sparse_matrix[row,col] == sparse_matrix[row-1,col]){
+      #   row <- row - 1
+      # }else{
+      #   elements[row - 1] <- TRUE
+      #   row <- row -1
+      #   col <- col - weights_vector[row -1]
+      # }
     
     }
   
   result <- list("value" = round(value),
-              "elements" = which(elements))
+              "elements" = which(elements) - 1)
   return(result)
 }
