@@ -4,6 +4,7 @@
 #' \describe{
 #'  \item{w}{Integer,  weight}
 #'  \item{v}{float, value of each object}
+#'  \item{n}{total items} 
 #' }
 #' @export
 "knapsack_objects"
