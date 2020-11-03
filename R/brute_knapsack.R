@@ -15,7 +15,7 @@ brute_force_knapsack <- function(x, W, parallel = FALSE){
   stopifnot(is.data.frame(x) & x> 0,
             is.numeric(W),
             W >0
-            )
+  )
   
   # separating the weights, values
   items_weight <- x$w
@@ -27,48 +27,51 @@ brute_force_knapsack <- function(x, W, parallel = FALSE){
     
     # add parallel code inside this block
     if(Sys.info()["sysname"][[1]] %in% c("Linux", "Darwin", "Windows")){
-     
+      
+      f <- function(i){
+        item <- which(as.logical(intToBits(i)))
+        total_weights <- sum(items_weight[item])
+        total_value <- sum(items_value[item])
+        
+        if(total_weights <= W){
+          return(total_value)}
+        else{
+          return(0)
+        }
+        
+      }
+      
       # detect the cores
       no_of_cores <- parallel::detectCores()
-      my_cluster <- parallel::makeCluster(no_of_cores)
+      my_cluster <- parallel::makeCluster(no_of_cores, type="PSOCK")
       # import the data fram x and weight W in cluster
       parallel::clusterExport(cl = my_cluster,
-                              c("x", "W"),
+                              c("x", "W","f"),
                               envir = environment()
       )
       
-      comb <-  parallel::parLapply(my_cluster,
-                                   1:2^total_items,
-                                   function(x){as.integer(intToBits(x)[1:total_items])})
-      #w1 <- simplify2array(parLapply(my_cluster, comb,function(y){y%*%x$W}))
-      #v1 <- simplify2array(parLapply(c3, mat, function(y){y%*%x$v}))
-
+      comb <-  parallel::parSapply(my_cluster,
+                                   0:(2^(total_items)-1),
+                                   f)
+      
+      
       
       # brute force
       
       
       parallel::stopCluster(my_cluster)
-    
-      #v1[w1 > W] = 0
-      #max_value <- which.max(v1)
-      #item_id <- mat[[max_value]]
       
-      #items <- c(c(1:n) * item_id)
-      #items <- items[items > 0]
+      max_value <- max(comb)
+      chosen_item <- which(as.logical(intToBits(which(comb == max_value)[1]-1)))
       
-      #result <- list(value = round(max_value), elements = items)
-      
-      }else{
+    }else{
       print("Brute Force Knapsack does not suported this system for the parrlel version of code ):-")
     }
     
     
   }else{
-    #browser()
     
-    # items included in knapsack, their total value
     max_value <- 0
-    # index of the items in the knapsack
     chosen_item <- c()
     # all possible combinations of the total items
     calc_combinations <- 1:((2^total_items)-1)
@@ -83,14 +86,14 @@ brute_force_knapsack <- function(x, W, parallel = FALSE){
       if(total_value > max_value && total_weights <= W){
         
         chosen_item <- item
-        max_value <- total_value
+        max_value <- total_value}
       
-        }
     }
-    result <- list("value"=round(max_value),"elements"=chosen_item) 
   }
+  result <- list("value"=round(max_value),"elements"=chosen_item) 
+  
   #returning the selected elements in knapsack and their toatl value
   return (result)
- 
+  
 }
 
