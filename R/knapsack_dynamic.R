@@ -85,3 +85,4 @@ knapsack_dynamic  <- function(x, W) {
               "elements" = which(elements) - 1)
   return(result)
 }
+

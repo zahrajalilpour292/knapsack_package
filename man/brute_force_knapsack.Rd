@@ -11,12 +11,15 @@ brute_force_knapsack(x, W, parallel = FALSE)
 
 \item{W}{is an integer that represents the maximum weight of the container}
 
-\item{parallel}{It's for the code to run on multiple cores or single}
+\item{parallel}{It's for the code to run on multiple cores of a computer to excute the code faster}
 }
 \value{
 It return the list, which the total value of item in knapsack and their position in the data frame
 }
 \description{
+This is a brute force algorthm which check all possible combinations
+}
+\details{
 Knapsack
 }
 \references{
