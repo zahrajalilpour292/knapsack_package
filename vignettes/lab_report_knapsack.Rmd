@@ -1,6 +1,6 @@
 ---
-title: "vignette_lab6"
-author: "Zahra, Arslan"
+title: "Lab 6"
+author: "Zahra, Arslan" 
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{vignette_lab6}
@@ -17,30 +17,20 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-
+### Loading the packages used in this report
 ```{r setup}
 library(knapsack)
+library(microbenchmark)
 ```
 
-
-```{r analysis, include=TRUE}
-suppressWarnings(RNGversion("3.5.9"))
-set.seed(42)
-n <- 2000
-knapsack_objects <- data.frame(
-  w=sample(1:4000, size = n, replace = TRUE),
-  v=runif(n = n, 0, 10000))
-```
 #  knapsack problem 
 
+This package contains  different implementations of Knapsack problem.
 
-The package will contain three different functions for solving what is called the knapsack problem.
-The knapsack problem is a discrete optimization problem where we have a knapsack that can take a
-limited weight W and we want to fill this knapsack with a number of items i = 1; :::; n, each with a
-weight wi and a value vi. The goal is to find the knapsack with the largest value of the elements added
-to the knapsack.
+knapsack is a optimization problem, here we have used the discreate variant of this problem.
 
-We use three different function to solve this problem:
+There are three different function in which we  have implemented same problem using different algorithms techniques.
+
 <p>
 **1. brute_force_knapsack**
 
@@ -48,14 +38,37 @@ We use three different function to solve this problem:
 
 **3. greedy_knapsack**
 
-## Brute force function
+We have generated a random data for this problem.
+
+Above functions have same parameters expect for the brute_force_knapsack function.
+
+### Argumnets
+
+__x__  represnt the dataframe with values v and weights w for items.
+
+__W__  represent the maximum weight that a particular bag can have in it.
+
+__parallel__  is for the code to be run on multiple cores of processsor for fast execution.
+
+```{r runCode, echo=TRUE}
+suppressWarnings(RNGversion("3.5.9"))
+set.seed(42)
+n <- 2000
+knapsack_objects <- data.frame(w=sample(1:4000, size = n, replace = TRUE),
+                               v=runif(n = n, 0, 10000)
+                               )
+head(knapsack_objects)
+```
+
+## Brute Force 
 
 The only solution that is guaranteed to give a correct answer in all situations for the knapsack problem
 is using brute-force search, i.e. going through all possible alternatives and return the maximum value
 found. This approach is of complexity $O(2^n)$ since all possible combinations $2^n$ needs to be evaluated.
 for time running, by microbenchmark library we will see the mean time as below. The mean run time is 334ms.
 
-```{r runCode, echo=TRUE}
+```{r, echo=TRUE}
+suppressWarnings(RNGversion("3.5.9"))
 set.seed(42)
 n <- 16
 knapsack_objects <- data.frame(w=sample(1:4000, size = n, replace = TRUE),v=runif(n = n, 0, 10000))
@@ -63,23 +76,7 @@ brute_force_knapsack(knapsack_objects[1:16,],3500)
 system.time(brute_force_knapsack(knapsack_objects[1:16,],3500))
 microbenchmark(brute_force_knapsack(knapsack_objects[1:16,],3500))
 ```
-
-```
-$value
-[1] 40581
-
-$elements
-[1]  3  4  7 13 15
-
-
-   user  system elapsed 
-   0.36    0.00    0.36 
-Unit: milliseconds
-                                                 expr      min       lq     mean   median       uq     max
- brute_force_knapsack(knapsack_objects[1:16, ], 3500) 316.5239 323.9394 334.5155 326.1359 329.9637 688.664
- neval
-   100
-```   
+  
 ## Dynamic Programming
 <p> The second algorithm we use for knapsack problem is dynamic.The running time of the dynamic programming solution is $O(Wn)$. It is a way to improve the running time. As we see the running time is decreased compared to Brute Force function. The mean of run time is 44 ms.
 ```{r}
@@ -90,21 +87,8 @@ knapsack_dynamic(knapsack_objects[1:12,],3500)
 system.time(knapsack_dynamic(knapsack_objects,3500))
 microbenchmark(knapsack_dynamic(knapsack_objects[1:12,],3500))
 ```
-```
-$value
-[1] 21612
 
-$elements
-[1] 6 7 9
- user  system elapsed 
-   1.79    0.01    1.80 
-Unit: milliseconds
-                                             expr      min       lq     mean   median       uq      max
- knapsack_dynamic(knapsack_objects[1:12, ], 3500) 41.25938 42.62357 44.82965 44.70053 45.09591 101.3004
- neval
-   100
-```
-##  greedy_knapsack()
+##  Greedy Knapsack
 <p> A last approach is to use the a heuristic or approximation for the problem. This algorithm will not
 give an exact result (but it can be shown that it will return at least 50% of the true maximum value),
 but it will reduce the computational complexity considerably (actually to $O(n log n)$ due to the sorting.
@@ -117,15 +101,15 @@ system.time(greedy_knapsack(knapsack_objects[1:12,],3500))
 microbenchmark(greedy_knapsack(knapsack_objects[1:12,],3500))
 ```
 
+## Brute Force Parallel
 
-```
-   user  system elapsed 
-      0       0       0 
-
-Unit: milliseconds
-                                            expr      min       lq     mean   median       uq      max
- greedy_knapsack(knapsack_objects[1:12, ], 3500) 1.608195 1.688759 1.755914 1.716212 1.754954 4.343255
- neval
-   100
-part of the algorithm)
+What we have done here is just added the extra parameter in the brute force algorithm function, parallel which is by default is FALSE. If we put the value TRUE then the function will run on the mutliple core of the system with Windows,linux and MacOs operating system.
+```{r}
+suppressWarnings(RNGversion("3.5.9"))
+set.seed(42)
+n <- 2000
+knapsack_objects <- data.frame(w=sample(1:4000, size = n, replace = TRUE),
+                               v=runif(n = n, 0, 10000)
+                               )
+system.time(brute_force_knapsack(knapsack_objects[1:16,],3500,parallel = TRUE))
 ```
