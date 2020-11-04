@@ -11,7 +11,7 @@
 #'
 
 brute_force_knapsack <- function(x, W, parallel = FALSE){
-  
+  # 
   stopifnot(is.data.frame(x) & x> 0,
             is.numeric(W),
             W >0
@@ -30,33 +30,33 @@ brute_force_knapsack <- function(x, W, parallel = FALSE){
      
       # detect the cores
       no_of_cores <- parallel::detectCores()
-      my_cluster <- parallel::makeCluster(no_of_cores)
+        my_cluster <- parallel::makeCluster(no_of_cores)
       # import the data fram x and weight W in cluster
       parallel::clusterExport(cl = my_cluster,
-                              c("x", "W"),
+                              c("x"),
                               envir = environment()
       )
       
       comb <-  parallel::parLapply(my_cluster,
-                                   1:2^total_items,
+                                   1:2^length(x$w),
                                    function(x){as.integer(intToBits(x)[1:total_items])})
-      #w1 <- simplify2array(parLapply(my_cluster, comb,function(y){y%*%x$W}))
-      #v1 <- simplify2array(parLapply(c3, mat, function(y){y%*%x$v}))
-
+      w1 <- simplify2array(parallel::parLapply(my_cluster, comb,function(y){y%*%x$W}))
+      v1 <- simplify2array(parallel::parLapply(my_cluster, mat, function(y){y%*%x$v}))
+      #browser()
       
       # brute force
       
       
       parallel::stopCluster(my_cluster)
     
-      #v1[w1 > W] = 0
-      #max_value <- which.max(v1)
-      #item_id <- mat[[max_value]]
+      v1[w1 > W] = 0
+      max_value <- which.max(v1)
+      item_id <- mat[[max_value]]
       
-      #items <- c(c(1:n) * item_id)
-      #items <- items[items > 0]
+      items <- c(c(1:n) * item_id)
+      items <- items[items > 0]
       
-      #result <- list(value = round(max_value), elements = items)
+      result <- list(value = round(max_value), elements = items)
       
       }else{
       print("Brute Force Knapsack does not suported this system for the parrlel version of code ):-")
